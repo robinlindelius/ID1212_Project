@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Chat</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rancho" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="resources/css/reset.css" rel="stylesheet"/>
+    <link href="resources/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="activeUsersView" onclick="toggleActiveUsers()">
+    <h2>ACTIVE USERS</h2>
+    <div id="activeUsers">
+    </div>
+</div>
+<div id="container" class="col-m-12 col-12">
+    <div class="header col-m-12 col-12">
+        <h1 id="title">Live chat</h1>
+    </div>
+    <div id="startJoinButtons" class="buttons col-m-12 col-12">
+        <button id="startChatButton" onclick="displayStartChatForm()">Start a chat</button>
+        <button id="joinChatButton" onclick="displayJoinChatForm()">Join a chat</button>
+    </div>
+    <div class="form">
+        <form id="startChatForm" onsubmit="startChat(); return false;">
+            <span>Name: <input type="text" name="startName" id="startName" autocomplete="off"></span>
+            <input type="submit" class="button" value="Start">
+        </form>
+    </div>
+    <div>
+        <form id="joinChatForm" onsubmit="joinChat(); return false;">
+            <span>ChatID: <input type="text" name="chatID" id="chatIDJoinForm" autocomplete="off"></span>
+            <span>Name: <input type="text" name="joinName" id="joinName" autocomplete="off"></span>
+            <input type="submit" class="button" value="Join">
+        </form>
+    </div>
+    <div id="chat" class="col-m-12 col-12">
+        <div class="icons col-m-12 col-12">
+            <i id="returnIcon" class="material-icons md-light col-m-6 col-6" onclick="returnToStart()">keyboard_backspace</i>
+            <div id="activeUsersInfo" class="col-m-6 col-6">
+                <i id="activeUsersIcon" class="material-icons md-light" onclick="toggleActiveUsers()">people</i>
+                <p id="numActiveUsers"></p>
+            </div>
+        </div>
+        <div id="chatInfo" class="col-m-12 col-12">
+            <h2 id="name"></h2>
+            <h2 id="chatID"></h2>
+        </div>
+        <div>
+            <div id="chatWindow" class="col-m-12 col-12">
+                <p id="msg"></p>
+            </div>
+        </div>
+        <div>
+            <form id="chatForm" onsubmit="sendMessage(); return false;">
+                <span>Message: <input type="text" name="message" id="messageChatForm" autocomplete="off"></span>
+                <input type="submit" class="button" value="Send">
+            </form>
+        </div>
+    </div>
+    <div id="errorMessage"></div>
+</div>
+</body>
+<script src="resources/js/script.js"></script>
+</html>

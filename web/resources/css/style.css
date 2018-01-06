@@ -1,0 +1,227 @@
+* {
+    box-sizing: border-box;
+}
+
+em {
+    font-style: italic;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+body {
+    font-family: 'Ubuntu Mono', monospace;
+    color: white;
+    background-color: #f84d29;
+}
+
+.header {
+    font-family: 'Rancho', cursive;
+    font-size: 4rem;
+    padding-top: 4rem;
+    color: white;
+}
+
+button {
+    border: 2px solid white;
+    border-radius: 100px;
+    color: white;
+    font-family: 'Rancho', cursive;
+    font-size: 2rem;
+    margin: 2rem;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: #f84d29;
+}
+
+
+.buttonActive {
+    background-color: white;
+    color: #f84d29;
+}
+
+input {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 1rem;
+    color: white;
+    background-color: #f84d29;
+}
+
+input[type=submit] {
+    border: 2px solid white;
+    border-radius: 100px;
+    margin: 2rem;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: #f84d29;
+}
+
+input[type=submit]:hover {
+    background-color: white;
+    color: #f84d29;
+}
+
+input[type=text] {
+    border: none;
+    border-bottom: 2px solid white;
+    font-size: 1rem;
+}
+
+#container {
+    text-align: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    height: 100%;
+    transition: margin-left .5s;
+}
+
+.buttons {
+    padding-top: 20%;
+}
+
+#chatWindow {
+    height: 15rem;
+    background-color: #ff6250;
+    overflow: scroll;
+    padding: 1rem;
+    text-align: left;
+    color: white;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.10) 5px 5px;
+}
+
+.icons {
+    display: block;
+    width: 100%;
+}
+
+#returnIcon {
+    display: block;
+    float: left;
+    width: 50%;
+    text-align: left;
+    font-size: 4rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+#activeUsersInfo {
+    display: block;
+    float: left;
+    width: 50%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    text-align: right;
+}
+
+#numActiveUsers {
+    display: block;
+    float: right;
+    width: auto;
+    font-size: 2rem;
+    padding-right: 1rem;
+}
+
+#activeUsersIcon {
+    display: block;
+    float: right;
+    width: auto;
+    font-size: 2rem;
+}
+
+#activeUsersView {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: #d93b1d;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    overflow-y: scroll;
+    padding-top: 2rem;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    white-space: nowrap;
+    border-left: rgba(0, 0, 0, 0.10) solid 5px;
+}
+
+#activeUsersView > h2 {
+    padding: 2em 0;
+    text-align: center;
+    font-size: 1.5em;
+    overflow: hidden;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    border-bottom: rgba(0, 0, 0, 0.10) solid 2px;
+}
+
+#activeUsers {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.activeUser {
+    padding: 0.5rem 1rem;
+    border-bottom: rgba(0, 0, 0, 0.10) solid 2px;
+    font-size: 1rem;
+}
+
+#chatInfo > h2 {
+    color: white;
+    text-align: left;
+}
+
+#errorMessage {
+    background-color: white;
+    color: #f84d29;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+
+#startChatForm,#joinChatForm,#errorMessage,#chat {
+    display: none;
+}
+
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-m-1 {width: 8.33%;}
+    .col-m-2 {width: 16.66%;}
+    .col-m-3 {width: 25%;}
+    .col-m-4 {width: 33.33%;}
+    .col-m-5 {width: 41.66%;}
+    .col-m-6 {width: 50%;}
+    .col-m-7 {width: 58.33%;}
+    .col-m-8 {width: 66.66%;}
+    .col-m-9 {width: 75%;}
+    .col-m-10 {width: 83.33%;}
+    .col-m-11 {width: 91.66%;}
+    .col-m-12 {width: 100%;}
+}
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
