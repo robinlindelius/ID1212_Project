@@ -6,7 +6,9 @@ import se.kth.id1212.server.model.User;
 import javax.inject.Inject;
 import javax.json.*;
 import javax.websocket.*;
+import javax.websocket.Session;
 import java.io.StringReader;
+import java.util.logging.Logger;
 
 /**
  * Created by Robin on 2018-01-03.
@@ -16,11 +18,18 @@ public class ServerEndpoint {
     @Inject
     SessionHandler sessionHandler;
 
+    private final Logger logger = Logger.getLogger(getClass().getName());
+
     private User user;
 
     @OnClose
     public void close(Session session) {
         sessionHandler.removeUser(user);
+    }
+
+    @OnError
+    public void onError(Throwable error) {
+        logger.severe("Error: " + error.getMessage());
     }
 
     @OnMessage
@@ -43,6 +52,9 @@ public class ServerEndpoint {
         }
         else if (("users").equals(jsonMessage.getString("action"))) {
             sessionHandler.getActiveUsers(jsonMessage.getInt("chatID"));
+        }
+        else if (("leave").equals(jsonMessage.getString("action"))) {
+            sessionHandler.removeUser(user);
         }
     }
 }

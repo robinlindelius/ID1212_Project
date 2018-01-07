@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Created by Robin on 2018-01-03.
@@ -20,6 +21,7 @@ public class SessionHandler {
     private final int MAX_NUM_CHATS = 1;
     private final Map<Integer, Chat> chats = Collections.synchronizedMap(new HashMap<>());
     private final ServerMessageBuilder serverMessageBuilder = new ServerMessageBuilder();
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     void startChat(User user) {
         for(int i = 0; i < MAX_NUM_CHATS; i++) {
@@ -86,7 +88,7 @@ public class SessionHandler {
             session.getBasicRemote().sendText(message.toString());
         }
         catch (IOException ioe) {
-            System.out.println("Failed to send message: " + message.toString());
+            logger.warning("Failed to send message: " + message.toString());
         }
     }
 

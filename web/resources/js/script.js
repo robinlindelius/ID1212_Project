@@ -116,10 +116,15 @@ function sendMessage() {
 }
 
 function returnToStart() {
-    ws.close();
     hideErrorMessage();
     hideChat();
     displayStartJoinButtons();
+
+    var ChatAction = {
+        action: "leave"
+    };
+
+    ws.send(JSON.stringify(ChatAction));
 }
 
 function displayStartChatForm() {
