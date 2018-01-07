@@ -1,4 +1,6 @@
-package se.kth.id1212.server.model;
+package se.kth.id1212.server.net;
+
+import se.kth.id1212.server.model.User;
 
 /**
  * Created by Robin on 2018-01-06.

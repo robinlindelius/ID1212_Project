@@ -1,7 +1,6 @@
 package se.kth.id1212.server.net;
 
 import se.kth.id1212.server.model.Chat;
-import se.kth.id1212.server.model.UserMessage;
 import se.kth.id1212.server.model.User;
 
 import javax.enterprise.context.ApplicationScoped;

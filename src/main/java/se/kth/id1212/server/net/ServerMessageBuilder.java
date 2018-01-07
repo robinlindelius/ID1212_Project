@@ -1,7 +1,5 @@
 package se.kth.id1212.server.net;
 
-import se.kth.id1212.server.model.UserMessage;
-
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.spi.JsonProvider;
