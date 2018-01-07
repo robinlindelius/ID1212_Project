@@ -9,30 +9,35 @@ var displayingActiveUsers = false;
 
 ws.onmessage = function (event) {
     var serverMessage = JSON.parse(event.data);
+    var action = serverMessage.action;
 
-    if (serverMessage.action === "joined") {
+    if (action === "joined") {
         chatID = serverMessage.chatID;
         name = serverMessage.name;
         hideStartJoinButtons();
         displayChat();
         getActiveUsers();
     }
-    else if (serverMessage.action === "failed") {
-        if (serverMessage.cause === "chatID") {
+    else if (action === "failed") {
+        var cause = serverMessage.cause;
+        if (cause === "chatID") {
             displayErrorMessage("Chat " + serverMessage.chatID + " does not exist");
         }
-        else if (serverMessage.cause === "name") {
+        else if (cause === "name") {
             displayErrorMessage("Name: " + serverMessage.name + " is already taken in chat " + serverMessage.chatID);
         }
+        else if (cause === "service") {
+            displayErrorMessage("Service is unavailable. Please try again later.")
+        }
     }
-    else if (serverMessage.action === "broadcast") {
+    else if (action === "broadcast") {
         var chatWindow = document.getElementById("chatWindow");
         var message = document.createElement("p");
         message.innerHTML = serverMessage.name + ": " + serverMessage.message;
         chatWindow.appendChild(message);
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
-    else if (serverMessage.action === "users") {
+    else if (action === "users") {
         var activeUsersView = document.getElementById("activeUsers");
         var activeUsers = serverMessage.users;
         activeUsersView.innerHTML = "";
@@ -40,15 +45,15 @@ ws.onmessage = function (event) {
         activeUsers.forEach(function (username) {
             var user = document.createElement("p");
             user.classList.add("activeUser");
-            user.innerHTML = username;
+            user.innerHTML = '<i class="material-icons md-light userIcon">&#xE061;</i>' + username;
             activeUsersView.appendChild(user);
         });
     }
 };
 
 ws.onclose = function () {
-    displayErrorMessage("Connection lost")
-}
+    displayErrorMessage("Connection lost. Refresh to reconnect.");
+};
 
 function startChat() {
     var form = document.getElementById("startChatForm");

@@ -8,8 +8,9 @@ import javax.websocket.Session;
 public class User {
     private Session session;
     private String name;
+    private int chatID;
 
-    public User(Session session, String name) {
+    public User(String name, Session session) {
         this.session = session;
         this.name = name;
     }
@@ -18,15 +19,15 @@ public class User {
         return session;
     }
 
-    public void setSession(Session session) {
-        this.session = session;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getChatID() {
+        return chatID;
+    }
+
+    public void setChatID(int chatID) {
+        this.chatID = chatID;
     }
 }

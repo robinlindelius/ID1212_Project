@@ -2,6 +2,7 @@ package se.kth.id1212.server.model;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Created by Robin on 2018-01-06.
@@ -12,6 +13,14 @@ public class Chat {
 
     public Collection<User> getUsers() {
         return users.values();
+    }
+
+    public Set<String> getUserNames() {
+        return users.keySet();
+    }
+
+    public boolean containsUser(User user) {
+        return users.containsKey(user.getName());
     }
 
     public boolean addUser(User user) {
@@ -28,5 +37,9 @@ public class Chat {
             return true;
         }
         else return false;
+    }
+
+    public boolean isEmpty() {
+        return users.isEmpty();
     }
 }

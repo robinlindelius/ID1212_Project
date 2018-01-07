@@ -128,8 +128,7 @@ input[type=text] {
     display: block;
     float: right;
     width: auto;
-    font-size: 2rem;
-    padding-right: 1rem;
+    font-size: 1rem;
 }
 
 #activeUsersIcon {
@@ -137,6 +136,7 @@ input[type=text] {
     float: right;
     width: auto;
     font-size: 2rem;
+    color: #68e258;
 }
 
 #activeUsersView {
@@ -171,9 +171,15 @@ input[type=text] {
 }
 
 .activeUser {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
     border-bottom: rgba(0, 0, 0, 0.10) solid 2px;
     font-size: 1rem;
+}
+
+.userIcon {
+    font-size: 1rem;
+    padding-right: 1rem;
+    color: #68e258;
 }
 
 #chatInfo > h2 {
