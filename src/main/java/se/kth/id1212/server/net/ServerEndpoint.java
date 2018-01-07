@@ -6,7 +6,6 @@ import se.kth.id1212.server.model.User;
 import javax.inject.Inject;
 import javax.json.*;
 import javax.websocket.*;
-import javax.websocket.Session;
 import java.io.StringReader;
 import java.util.logging.Logger;
 
