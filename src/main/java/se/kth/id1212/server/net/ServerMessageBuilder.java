@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Created by Robin on 2018-01-06.
  */
-public class ServerMessageBuilder {
+class ServerMessageBuilder {
 
     JsonObject joinedMessage(int chatID, String name) {
         JsonProvider provider = JsonProvider.provider();

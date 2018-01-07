@@ -1,15 +1,12 @@
 package se.kth.id1212.server.model;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Robin on 2018-01-06.
  */
 public class Chat {
-    private HashMap<String, User> users = new HashMap<>();
-
+    private Map<String, User> users = Collections.synchronizedMap(new HashMap<>());
 
     public Collection<User> getUsers() {
         return users.values();

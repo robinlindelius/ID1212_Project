@@ -16,44 +16,33 @@ public class ServerEndpoint {
     @Inject
     SessionHandler sessionHandler;
 
-    private ServerMessageBuilder serverMessageBuilder = new ServerMessageBuilder();
     private User user;
-
-    @OnOpen
-    public void open(Session session) {
-    }
 
     @OnClose
     public void close(Session session) {
         sessionHandler.removeUser(user);
     }
 
-    @OnError
-    public void onError(Throwable error) {
-    }
-
     @OnMessage
     public void handleMessage(String message, Session session) {
-        System.out.println("Received message: " + message);
+        JsonReader reader = Json.createReader(new StringReader(message));
+        JsonObject jsonMessage = reader.readObject();
 
-            JsonReader reader = Json.createReader(new StringReader(message));
-            JsonObject jsonMessage = reader.readObject();
+        if ("start".equals(jsonMessage.getString("action"))) {
+            user = new User(jsonMessage.getString("name"),session);
+            sessionHandler.startChat(user);
+        }
+        else if ("join".equals(jsonMessage.getString("action"))) {
+            user = new User(jsonMessage.getString("name"),session);
+            sessionHandler.joinChat(Integer.parseInt(jsonMessage.getString("chatID")),user);
+        }
+        else if (("message").equals(jsonMessage.getString("action"))) {
+            UserMessage userMessage = new UserMessage(user,jsonMessage.getString("message"));
+            sessionHandler.broadcast(userMessage);
 
-            if ("start".equals(jsonMessage.getString("action"))) {
-                user = new User(jsonMessage.getString("name"),session);
-                sessionHandler.startChat(user);
-            }
-            else if ("join".equals(jsonMessage.getString("action"))) {
-                user = new User(jsonMessage.getString("name"),session);
-                sessionHandler.joinChat(Integer.parseInt(jsonMessage.getString("chatID")),user);
-            }
-            else if (("message").equals(jsonMessage.getString("action"))) {
-                UserMessage userMessage = new UserMessage(user,jsonMessage.getString("message"));
-                sessionHandler.broadcast(userMessage);
-
-            }
-            else if (("users").equals(jsonMessage.getString("action"))) {
-                sessionHandler.getActiveUsers(jsonMessage.getInt("chatID"));
-            }
+        }
+        else if (("users").equals(jsonMessage.getString("action"))) {
+            sessionHandler.getActiveUsers(jsonMessage.getInt("chatID"));
+        }
     }
 }
