@@ -78,7 +78,7 @@ public class SessionHandler {
         }
     }
 
-    void broadcast(UserMessage userMessage) {
+    void broadcast(UserMessageDTO userMessage) {
         broadcastToChat(userMessage.getUser().getChatID(), serverMessageBuilder.broadcastMessage(userMessage));
     }
 

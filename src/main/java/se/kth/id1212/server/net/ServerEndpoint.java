@@ -44,7 +44,7 @@ public class ServerEndpoint {
             sessionHandler.joinChat(Integer.parseInt(jsonMessage.getString("chatID")),user);
         }
         else if (("message").equals(jsonMessage.getString("action"))) {
-            UserMessage userMessage = new UserMessage(user,jsonMessage.getString("message"));
+            UserMessageDTO userMessage = new UserMessageDTO(user,jsonMessage.getString("message"));
             sessionHandler.broadcast(userMessage);
 
         }

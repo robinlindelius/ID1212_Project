@@ -47,7 +47,7 @@ class ServerMessageBuilder {
                 .build();
     }
 
-    JsonObject broadcastMessage(UserMessage userMessage) {
+    JsonObject broadcastMessage(UserMessageDTO userMessage) {
         JsonProvider provider = JsonProvider.provider();
         return provider.createObjectBuilder()
                 .add("action", "broadcast")
